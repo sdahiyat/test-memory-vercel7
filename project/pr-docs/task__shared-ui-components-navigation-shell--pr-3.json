@@ -1,0 +1,55 @@
+{
+  "overview": "This PR builds the shared UI component library and mobile-first navigation shell for the app. It adds reusable primitives (Button, Input, Select, Card, Modal, Skeleton, Toast, ErrorBoundary) plus a utility module, all styled with Tailwind. Components follow forwardRef patterns and support variants, sizes, and accessibility basics.",
+  "summary_json": {
+    "Nav routes": "Dashboard, Log Meal, Progress, Profile (bottom nav shell)",
+    "New components": "Button, Input, Select, Card, Modal, Skeleton, Toast, ErrorBoundary",
+    "Utility helpers": "cn, formatNumber, formatCalories, formatDate, clamp (src/lib/utils.ts)",
+    "Button variants": "primary, secondary, ghost, danger",
+    "Card variants": "default, bordered, elevated",
+    "Toast types": "success, error, warning, info — via React Context provider",
+    "Modal sizes": "sm, md, lg, full — rendered via createPortal",
+    "Skeleton variants": "Skeleton, SkeletonText, SkeletonAvatar",
+    "Styling pattern": "Tailwind utility classes via cn() helper",
+    "Cap note": "File list truncated at index 9; additional nav/layout files may exist"
+  },
+  "files_changed": [
+    {
+      "path": "src/lib/utils.ts",
+      "summary": "Adds shared utility functions: class merging (cn), number/calorie/date formatters, and clamp."
+    },
+    {
+      "path": "src/components/ui/Button.tsx",
+      "summary": "Reusable button with variant, size, loading, and fullWidth props via forwardRef."
+    },
+    {
+      "path": "src/components/ui/Input.tsx",
+      "summary": "Labeled text input with error, helper text, and optional left/right icon slots."
+    },
+    {
+      "path": "src/components/ui/Select.tsx",
+      "summary": "Styled select dropdown with label, error, placeholder, and ChevronDown icon."
+    },
+    {
+      "path": "src/components/ui/Card.tsx",
+      "summary": "Composable card component with variant and padding props plus CardHeader/CardSection sub-components."
+    },
+    {
+      "path": "src/components/ui/Modal.tsx",
+      "summary": "Portal-based modal with body scroll lock, backdrop, close button, and size variants."
+    },
+    {
+      "path": "src/components/ui/Skeleton.tsx",
+      "summary": "Loading skeleton primitives: Skeleton, SkeletonText (multi-line), and SkeletonAvatar."
+    },
+    {
+      "path": "src/components/ui/Toast.tsx",
+      "summary": "Context-based toast notification system with four typed variants and auto-dismiss support."
+    },
+    {
+      "path": "src/components/ui/ErrorBoundary.tsx",
+      "summary": "Class-based React error boundary with optional fallback UI and onReset callback."
+    }
+  ],
+  "extras": "Verify ToastProvider is mounted at the app root so useToast hooks resolve. Navigation shell files may exist beyond the cap; confirm bottom-nav routing is wired to Next.js app router. Follow-up: add barrel exports (index.ts) for the ui directory to simplify imports.",
+  "fallback_text": "PR #3 on branch task/shared-ui-components-navigation-shell adds the full shared UI component library. src/lib/utils.ts provides cn, formatNumber, formatCalories, formatDate, and clamp helpers. Nine UI components are introduced: Button (4 variants, 3 sizes, loading state), Input (icons, error, helper text), Select (options array, placeholder), Card (3 variants, 4 padding levels, CardHeader/CardSection), Modal (portal, scroll lock, 4 sizes), Skeleton/SkeletonText/SkeletonAvatar (loading states), Toast (Context provider, 4 types, auto-dismiss), and ErrorBoundary (class component with fallback/reset). All use Tailwind via the cn helper. A mobile-first bottom navigation shell targeting Dashboard, Log Meal, Progress, and Profile routes is part of this branch; those nav files may be beyond the preview cap. Ensure ToastProvider wraps the app root and consider adding a ui/index.ts barrel export."
+}
