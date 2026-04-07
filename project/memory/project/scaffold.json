@@ -1,0 +1,95 @@
+{
+  "schemaVersion": "cofabric.memory.scaffold.v1",
+  "fileTree": [
+    {
+      "path": "package.json",
+      "purpose": "Next.js app with Supabase, OpenAI, and Lucide icons dependencies",
+      "isEmpty": false
+    },
+    {
+      "path": "tsconfig.json",
+      "purpose": "TypeScript configuration with path aliases",
+      "isEmpty": false
+    },
+    {
+      "path": "next.config.js",
+      "purpose": "Basic Next.js config with image domains",
+      "isEmpty": false
+    },
+    {
+      "path": "postcss.config.js",
+      "purpose": "PostCSS configuration",
+      "isEmpty": false
+    },
+    {
+      "path": "tailwind.config.js",
+      "purpose": "Tailwind with custom primary colors",
+      "isEmpty": false
+    },
+    {
+      "path": "src/app/layout.tsx",
+      "purpose": "Root layout with metadata for nutrition tracking app",
+      "isEmpty": false
+    },
+    {
+      "path": "src/app/globals.css",
+      "purpose": "Tailwind base styles with CSS variables",
+      "isEmpty": false
+    },
+    {
+      "path": "src/app/page.tsx",
+      "purpose": "Landing page showcasing AI nutrition tracking features",
+      "isEmpty": false
+    },
+    {
+      "path": ".env.example",
+      "purpose": "Environment variables for Supabase, OpenAI, and NextAuth",
+      "isEmpty": false
+    },
+    {
+      "path": "pr-docs/.gitkeep",
+      "purpose": "Placeholder for PR documentation",
+      "isEmpty": false
+    },
+    {
+      "path": "memory/.gitkeep",
+      "purpose": "Memory directory placeholder",
+      "isEmpty": false
+    },
+    {
+      "path": "memory/project/.gitkeep",
+      "purpose": "Project memory placeholder",
+      "isEmpty": false
+    },
+    {
+      "path": "memory/task/.gitkeep",
+      "purpose": "Task memory placeholder",
+      "isEmpty": false
+    },
+    {
+      "path": "memory/agent/.gitkeep",
+      "purpose": "Agent memory placeholder",
+      "isEmpty": false
+    },
+    {
+      "path": "memory/context/.gitkeep",
+      "purpose": "Context memory placeholder",
+      "isEmpty": false
+    }
+  ],
+  "libraryExports": [],
+  "existingRoutes": [
+    {
+      "type": "page",
+      "path": "/",
+      "file": "src/app/page.tsx",
+      "httpMethods": null,
+      "isEmpty": false
+    }
+  ],
+  "databaseState": {
+    "migrationsExist": false,
+    "tables": []
+  },
+  "intentionallyEmpty": []
+}

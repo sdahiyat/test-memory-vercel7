@@ -1,0 +1,218 @@
+{
+  "schemaVersion": "cofabric.memory.roadmap.v1",
+  "featuresNotYetImplemented": [
+    {
+      "name": "User authentication",
+      "description": "User signs up and logs in to access the application.",
+      "needs": [
+        "NextAuth setup",
+        "authentication pages",
+        "session management"
+      ]
+    },
+    {
+      "name": "Manual meal logging",
+      "description": "Users can manually enter food items with portion sizes.",
+      "needs": [
+        "meal entry form",
+        "food search/selection",
+        "DB tables",
+        "API routes"
+      ]
+    },
+    {
+      "name": "AI photo logging",
+      "description": "Users can capture or upload food images for automatic identification and calorie estimation.",
+      "needs": [
+        "camera interface",
+        "image upload",
+        "OpenAI integration",
+        "API routes"
+      ]
+    },
+    {
+      "name": "Daily nutrition tracking",
+      "description": "Track daily calories and macronutrient breakdown.",
+      "needs": [
+        "dashboard",
+        "nutrition calculations",
+        "progress display"
+      ]
+    },
+    {
+      "name": "Goal setting",
+      "description": "Users can set custom goals for weight loss, maintenance, or muscle gain with target calories.",
+      "needs": [
+        "goal setting form",
+        "user profile management",
+        "DB tables"
+      ]
+    },
+    {
+      "name": "Progress tracking",
+      "description": "Display progress charts for weight, calories, and macros with daily summaries.",
+      "needs": [
+        "charts component",
+        "progress calculations",
+        "historical data display"
+      ]
+    },
+    {
+      "name": "Nutrition insights and feedback",
+      "description": "Provide daily/weekly nutrition insights and suggestions for improvement.",
+      "needs": [
+        "AI insights generation",
+        "feedback display",
+        "habit detection"
+      ]
+    }
+  ],
+  "databaseTablesToCreate": [
+    {
+      "name": "users",
+      "columnsSpecifiedInSpec": [
+        {
+          "name": "weight",
+          "type": "numeric",
+          "notes": "Current weight for goal tracking"
+        },
+        {
+          "name": "target_calories",
+          "type": "integer",
+          "notes": "Daily calorie goal set by user"
+        },
+        {
+          "name": "goal_type",
+          "type": "text",
+          "notes": "Weight loss, maintenance, or muscle gain"
+        }
+      ],
+      "schemaDetailsInSpec": false
+    },
+    {
+      "name": "meals",
+      "columnsSpecifiedInSpec": [
+        {
+          "name": "food_items",
+          "type": null,
+          "notes": "Food entries within the meal"
+        },
+        {
+          "name": "calories",
+          "type": "integer",
+          "notes": "Total calories for the meal"
+        },
+        {
+          "name": "protein",
+          "type": "numeric",
+          "notes": "Protein macronutrient content"
+        },
+        {
+          "name": "carbs",
+          "type": "numeric",
+          "notes": "Carbohydrate macronutrient content"
+        },
+        {
+          "name": "fats",
+          "type": "numeric",
+          "notes": "Fat macronutrient content"
+        },
+        {
+          "name": "image",
+          "type": "text",
+          "notes": "Photo URL for AI-logged meals"
+        }
+      ],
+      "schemaDetailsInSpec": false
+    },
+    {
+      "name": "food_items",
+      "columnsSpecifiedInSpec": [
+        {
+          "name": "name",
+          "type": "text",
+          "notes": "Food item name"
+        },
+        {
+          "name": "portion_size",
+          "type": null,
+          "notes": "Serving size information"
+        },
+        {
+          "name": "calories",
+          "type": "integer",
+          "notes": "Calories per portion"
+        },
+        {
+          "name": "protein",
+          "type": "numeric",
+          "notes": "Protein content per portion"
+        },
+        {
+          "name": "carbs",
+          "type": "numeric",
+          "notes": "Carbohydrate content per portion"
+        },
+        {
+          "name": "fats",
+          "type": "numeric",
+          "notes": "Fat content per portion"
+        }
+      ],
+      "schemaDetailsInSpec": false
+    }
+  ],
+  "apiEndpointsToBuild": [
+    {
+      "method": "POST",
+      "path": "/api/meals",
+      "description": "Create a new meal entry with food items and nutrition data",
+      "authRequired": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/meals",
+      "description": "Get user's meal history and daily nutrition summary",
+      "authRequired": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/ai/photo",
+      "description": "Process uploaded food photo for automatic identification and calorie estimation",
+      "authRequired": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/nutrition/daily",
+      "description": "Get daily calorie and macronutrient tracking summary",
+      "authRequired": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/progress",
+      "description": "Get progress charts data for weight, calories, and macros",
+      "authRequired": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/goals",
+      "description": "Set or update user's nutrition and weight goals",
+      "authRequired": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/insights",
+      "description": "Get personalized nutrition insights and improvement suggestions",
+      "authRequired": true
+    }
+  ],
+  "openQuestions": [
+    "How should portion sizes be standardized and stored in the database?",
+    "What specific micronutrients should be tracked in the future feature?",
+    "How should the recent/frequent foods feature prioritize and store food preferences?",
+    "What timeframe constitutes daily vs weekly insights?",
+    "How should the AI photo recognition handle multiple food items in one image?",
+    "What specific chart types and time ranges should progress tracking display?",
+    "How should habit detection quantify and threshold nutrition trends?"
+  ]
+}

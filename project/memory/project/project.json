@@ -1,0 +1,78 @@
+{
+  "schemaVersion": "cofabric.memory.project.v1",
+  "name": "NutriTrack",
+  "oneLineDescription": "AI-powered nutrition tracking application for easy meal logging and dietary insights",
+  "whatItIs": "NutriTrack is an AI-powered nutrition tracking application designed to help users easily log meals, understand their dietary habits, and improve overall health. The product focuses on speed, simplicity, and intelligent automation to reduce the friction typically associated with food tracking.",
+  "stack": [
+    {
+      "name": "react",
+      "version": "^18.2.0",
+      "purpose": "frontend framework"
+    },
+    {
+      "name": "react-dom",
+      "version": "^18.2.0",
+      "purpose": "DOM rendering"
+    },
+    {
+      "name": "next",
+      "version": "^14.0.0",
+      "purpose": "full-stack framework"
+    },
+    {
+      "name": "@supabase/supabase-js",
+      "version": "^2.38.0",
+      "purpose": "database and auth client"
+    },
+    {
+      "name": "openai",
+      "version": "^4.20.0",
+      "purpose": "AI food recognition"
+    },
+    {
+      "name": "lucide-react",
+      "version": "^0.294.0",
+      "purpose": "icons"
+    }
+  ],
+  "externalIntegrations": [
+    {
+      "service": "Supabase",
+      "envVars": [
+        "NEXT_PUBLIC_SUPABASE_URL",
+        "NEXT_PUBLIC_SUPABASE_ANON_KEY",
+        "SUPABASE_SERVICE_ROLE_KEY"
+      ],
+      "clientLocation": null
+    },
+    {
+      "service": "OpenAI",
+      "envVars": [
+        "OPENAI_API_KEY"
+      ],
+      "clientLocation": null
+    },
+    {
+      "service": "NextAuth",
+      "envVars": [
+        "NEXTAUTH_SECRET",
+        "NEXTAUTH_URL"
+      ],
+      "clientLocation": null
+    }
+  ],
+  "coreUserFlows": [
+    "User signs up / logs in",
+    "Sets basic goals (weight, target calories)",
+    "Lands on daily dashboard",
+    "Logs a meal (manual or photo)",
+    "Views updated nutrition summary",
+    "Receives basic feedback"
+  ],
+  "outOfScope": [
+    "Full meal planning",
+    "Advanced analytics",
+    "Wearable integrations",
+    "Social/community features"
+  ]
+}
