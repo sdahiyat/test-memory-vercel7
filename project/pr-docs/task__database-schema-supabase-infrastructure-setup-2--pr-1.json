@@ -1,0 +1,49 @@
+{
+  "overview": "This PR establishes the full Supabase/PostgreSQL foundation for the NutriTrack app. It adds the initial migration with all tables (profiles, meals, meal_items, foods, weight_logs), RLS policies, and auto-profile triggers, plus typed client utilities for both browser and server-side Next.js usage.",
+  "summary_json": {
+    "Tables created": "profiles, meals, meal_items, foods, weight_logs",
+    "RLS": "Row Level Security policies enabled for user data isolation",
+    "DB triggers": "Auto-updates updated_at; auto-creates profile on new user registration",
+    "Env vars required": "NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY, SUPABASE_SERVICE_ROLE_KEY, OPENAI_API_KEY, NEXTAUTH_SECRET, NEXTAUTH_URL",
+    "New dependencies": "@supabase/ssr ^0.1.0, @supabase/supabase-js ^2.38.0",
+    "Client exports": "createBrowserSupabaseClient, createServerSupabaseClient, createAdminClient",
+    "Helper functions": "getUserProfile, upsertUserProfile, getDailyMeals, getDailyNutritionSummary, getWeightLogs, searchFoods",
+    "Breaking changes": "None; greenfield setup"
+  },
+  "files_changed": [
+    {
+      "path": "supabase/migrations/001_initial_schema.sql",
+      "summary": "Defines all tables, indexes, RLS policies, and triggers for the NutriTrack schema in Supabase."
+    },
+    {
+      "path": "src/lib/supabase/types.ts",
+      "summary": "Exports TypeScript interfaces and enums mirroring all database tables and insert/update variants."
+    },
+    {
+      "path": "src/lib/supabase/client.ts",
+      "summary": "Browser-side Supabase client factory using @supabase/ssr createBrowserClient with typed Database."
+    },
+    {
+      "path": "src/lib/supabase/server.ts",
+      "summary": "Server-side Supabase client factory (and admin client) using cookie-based session management for Next.js 14 App Router."
+    },
+    {
+      "path": "src/lib/supabase/helpers.ts",
+      "summary": "Typed query helpers for common data operations (profiles, meals, foods, weight logs) against the Supabase client."
+    },
+    {
+      "path": "src/lib/supabase/index.ts",
+      "summary": "Barrel export consolidating all client factories, helpers, and types from the supabase lib directory."
+    },
+    {
+      "path": "package.json",
+      "summary": "Adds @supabase/ssr and @supabase/supabase-js as runtime dependencies alongside existing Next.js/OpenAI/NextAuth stack."
+    },
+    {
+      "path": ".env.example",
+      "summary": "Documents all required environment variables for Supabase, OpenAI, and NextAuth configuration."
+    }
+  ],
+  "extras": "Verify by running the migration against a Supabase project (supabase db push or apply via dashboard) and confirming RLS policies are active. Follow-up: SUPABASE_SERVICE_ROLE_KEY must never be exposed client-side; ensure middleware session refresh is wired up before using server.ts in production.",
+  "fallback_text": "PR #1 sets up the entire Supabase infrastructure for NutriTrack. A single SQL migration creates five tables (profiles, meals, meal_items, foods, weight_logs) with RLS policies and two triggers (auto updated_at and auto profile creation). Typed TypeScript utilities are added under src/lib/supabase/ covering a browser client, server/admin client, typed helpers, and a barrel index. package.json gains @supabase/ssr and @supabase/supabase-js. Six env vars must be configured: NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY, SUPABASE_SERVICE_ROLE_KEY, OPENAI_API_KEY, NEXTAUTH_SECRET, NEXTAUTH_URL. No breaking changes; this is the initial data layer setup."
+}
