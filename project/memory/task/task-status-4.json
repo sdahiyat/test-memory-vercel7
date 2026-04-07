@@ -1,0 +1,12 @@
+{
+  "schema": "cofabric.task_status.v1",
+  "task_number": 4,
+  "title": "User Profile & Goals Management",
+  "status": "pending",
+  "priority": "high",
+  "description": "",
+  "completion_summary": null,
+  "pr_url": null,
+  "pr_doc": null,
+  "updated_at": "2026-04-07T20:54:54.392Z"
+}
