@@ -1,0 +1,48 @@
+{
+  "overview": "This PR establishes the full PostgreSQL database schema for NutriTrack in Supabase, including all core tables (profiles, foods, meals, meal_items, weight_logs) with RLS policies for user data isolation. It also ships typed Supabase client utilities for both browser and server-side usage, plus pre-built query helpers. Seed data for common foods and an env example file are included to bootstrap local development.",
+  "summary_json": {
+    "Tables created": "profiles, foods, meals, meal_items, weight_logs",
+    "Security": "Row Level Security (RLS) policies on all user-scoped tables",
+    "Client utilities": "createBrowserSupabaseClient (singleton), createServerSupabaseClient, createAdminSupabaseClient",
+    "Env vars required": "NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY, SUPABASE_SERVICE_ROLE_KEY, OPENAI_API_KEY, NEXTAUTH_SECRET, NEXTAUTH_URL",
+    "Admin client warning": "createAdminSupabaseClient bypasses RLS — server-side only, never expose to browser",
+    "Import path": "@/lib/supabase (barrel export)",
+    "Seed data": "Common foods pre-loaded via supabase/seed.sql"
+  },
+  "files_changed": [
+    {
+      "path": "supabase/migrations/001_initial_schema.sql",
+      "summary": "Defines all tables, indexes, RLS policies, and helper functions for the NutriTrack database."
+    },
+    {
+      "path": "src/lib/supabase/types.ts",
+      "summary": "TypeScript types and interfaces generated from the schema, covering all tables, enums, insert/update variants, and join shapes."
+    },
+    {
+      "path": "src/lib/supabase/client.ts",
+      "summary": "Browser-side Supabase client factory and singleton getter for use in React client components."
+    },
+    {
+      "path": "src/lib/supabase/server.ts",
+      "summary": "Server-side client factories: standard (respects RLS) and admin (bypasses RLS) for use in API routes and server actions."
+    },
+    {
+      "path": "src/lib/supabase/queries.ts",
+      "summary": "Pre-built typed query helpers for profiles, meals, foods search, daily nutrition summary, and weight logging."
+    },
+    {
+      "path": "src/lib/supabase/index.ts",
+      "summary": "Barrel export re-exporting all clients, query helpers, and types from a single @/lib/supabase import path."
+    },
+    {
+      "path": "supabase/seed.sql",
+      "summary": "Inserts verified seed food items (proteins, grains, fruits) with accurate nutrition data into the foods table."
+    },
+    {
+      "path": ".env.example",
+      "summary": "Documents all required environment variables with public/private annotations for safe configuration."
+    }
+  ],
+  "extras": "Verify by running the migration against a Supabase project, then executing seed.sql. Confirm RLS policies block cross-user data access. Follow-up: ensure SUPABASE_SERVICE_ROLE_KEY is never committed and is excluded from any client bundle.",
+  "fallback_text": "PR #2 adds the complete NutriTrack database layer. A single migration file creates profiles, foods, meals, meal_items, and weight_logs tables with RLS for user isolation. Typed TypeScript definitions cover all table shapes, enums, and join types. Three Supabase client factories are provided: browser singleton, standard server (RLS-respecting), and admin (RLS-bypassing, server-only). Query helpers cover common CRUD patterns for all entities. Seed data pre-populates foods. An .env.example documents the five required env vars. Import everything via @/lib/supabase."
+}
