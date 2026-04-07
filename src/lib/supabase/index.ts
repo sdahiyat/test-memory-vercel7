@@ -1,16 +1,22 @@
-// Client utilities
-export { createClient as createBrowserSupabaseClient } from './client'
-export { createClient as createServerSupabaseClient, createAdminClient } from './server'
+// Barrel export for the @/lib/supabase module
+// Import from '@/lib/supabase' for all Supabase utilities and types
 
-// Helper functions
+// Client utilities
+export { createBrowserSupabaseClient, getSupabaseClient } from './client'
+export { createServerSupabaseClient, createAdminSupabaseClient } from './server'
+
+// Query helpers
 export {
   getUserProfile,
   upsertUserProfile,
-  getDailyMeals,
+  getMealsForDay,
   getDailyNutritionSummary,
-  getWeightLogs,
+  createMeal,
+  getMealHistory,
   searchFoods,
-} from './helpers'
+  logWeight,
+  getWeightHistory,
+} from './queries'
 
 // Types
 export type {
@@ -20,16 +26,22 @@ export type {
   ProfileUpdate,
   Food,
   FoodInsert,
+  FoodUpdate,
   Meal,
   MealInsert,
   MealUpdate,
   MealItem,
   MealItemInsert,
+  MealItemUpdate,
   WeightLog,
   WeightLogInsert,
-  MealWithItems,
-  DailyNutritionSummary,
+  WeightLogUpdate,
   GoalType,
-  ActivityLevel,
   MealType,
+  MealSource,
+  ActivityLevel,
+  Gender,
+  MealWithItems,
+  MealItemWithFood,
+  MealWithItemsAndFoods,
 } from './types'
